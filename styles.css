@@ -1,0 +1,31 @@
+body {
+    padding-right: 300px; /* Espacio para el carrito lateral */
+    color: #8a2d2d;
+}
+
+.view {
+    display: none;
+}
+
+.carrito-lateral {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    background-color: #f8f9fa;
+    border-left: 1px solid #dee2e6;
+    padding: 15px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    display: none; /* Oculto por defecto, se mostrará con JavaScript */
+    overflow-y: auto; /* Permite el scroll si el contenido es más largo que la altura */
+}
+
+.carrito-lateral h2 {
+    margin-top: 0;
+}
+
+.img-static {
+    display: block;
+    margin: 0 auto;
+}

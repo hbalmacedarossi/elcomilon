@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurante El Comilón</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="bg-dark text-white text-center py-3">
+        <h1>Restaurante El Comilón</h1>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">El Comilón</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="showView('inicio')">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="showView('menu')">Menú</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="showView('carrito')">Carrito</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="showView('clientes')">Clientes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="showView('resumen')">Resumen</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <main class="container mt-4">
+        <div id="inicio" class="view">
+            <h2 class="text-center">Bienvenidos a El Comilón</h2>
+            <strong><p class="text-center">Los mejores en comida casera desde 2014.</p></strong>
+            <p class="text-center">Demostramos nuestra pasión entregando los mejores platos de comida casera. <br>
+                Nos dedicamos a elaborar los mejores almuerzos a clientes de empresas o a particulares. <br>
+                Nuestros clientes valoran los ingredientes frescos y caseros con los que preparamos nuestros platos.<br>
+                Anímate a vivir la mejor experiencia en cocina casera con nosotros!! </p>
+        </div>
+        
+        <div id="menu" class="view" style="display:none;">
+            <h2 class="text-center">Nuestro Menú</h2>
+            <div class="row" id="menuItems">
+                <!-- Items del menú se agregarán aquí -->
+            </div>
+        </div>
+        
+        <div id="carrito" class="view" style="display:none;">
+            <h2 class="text-center">Carrito de Compras</h2>
+            <div id="carritoItems">
+                <!-- Items del carrito se agregarán aquí -->
+            </div>
+            <div id="clienteInfo" class="mt-4">
+                <!-- Información del cliente se mostrará aquí -->
+            </div>
+            <div class="text-center mt-4">
+                <button class="btn btn-primary" onclick="realizarPedido()">Realizar Pedido</button>
+            </div>
+        </div>
+        
+        <div id="clientes" class="view" style="display:none;">
+            <h2 class="text-center">Gestión de Clientes</h2>
+            <button class="btn btn-success mb-3" onclick="showForm()">Agregar Cliente</button>
+            <div id="clienteForm" style="display:none;">
+                <form id="formCliente">
+                    <div class="form-group">
+                        <label for="nombreCliente">Nombre:</label>
+                        <input type="text" id="nombreCliente" name="nombreCliente" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="emailCliente">Email:</label>
+                        <input type="email" id="emailCliente" name="emailCliente" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefonoCliente">Teléfono:</label>
+                        <input type="tel" id="telefonoCliente" name="telefonoCliente" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="entregaCliente">Tipo de Entrega:</label>
+                        <select id="entregaCliente" name="entregaCliente" class="form-control" required onchange="mostrarCampoDireccion()">
+                            <option value="retiro">Retiro en Local</option>
+                            <option value="domicilio">Entrega a Domicilio</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="direccionClienteDiv" style="display:none;">
+                        <label for="direccionCliente">Dirección:</label>
+                        <input type="text" id="direccionCliente" name="direccionCliente" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="fechaEntregaCliente">Fecha de Entrega:</label>
+                        <input type="date" id="fechaEntregaCliente" name="fechaEntregaCliente" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="horaEntregaCliente">Hora de Entrega:</label>
+                        <input type="time" id="horaEntregaCliente" name="horaEntregaCliente" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Agregar</button>
+                </form>
+            </div>
+            <div id="listaClientes" class="mt-4">
+                <!-- Lista de clientes se mostrará aquí -->
+            </div>
+        </div>
+        <div id="resumen" class="view" style="display:none;">
+            <h2 class="text-center">Resumen del Pedido</h2>
+            <div id="resumenCliente">
+                <!-- Detalles del cliente se mostrarán aquí -->
+            </div>
+            <div id="resumenPedido">
+                <!-- Resumen del pedido se mostrará aquí -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Carrito de compras en el lado derecho -->
+    <aside id="carritoLateral" class="carrito-lateral">
+        <h2>Carrito de Compras</h2>
+        <div id="itemsCarritoLateral">
+            <!-- Items del carrito se agregarán aquí -->
+        </div>
+        <button class="btn btn-primary" onclick="realizarPedido()">Realizar Pedido</button>
+        <button class="btn btn-secondary" onclick="cerrarCarrito()">Cerrar</button>
+    </aside>
+    
+    <img src="logo.jpg" alt="Logo de restaurant" class="img-static" style="width: 80%; height: auto;">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
